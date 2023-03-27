@@ -28,7 +28,11 @@ func main() {
 	var email string
 	var userTickets uint
 
-	var bookings [50]string // Array type
+	// Arrays & Slices
+	// var bookings [50]string
+	// var bookings = []string{}
+	// bookings := []string{}
+	var bookings []string
 
 	// User Input & Pointer
 	fmt.Println("Enter your first name: ")
@@ -43,12 +47,12 @@ func main() {
 	//* Booking logic in application ---
 	// remainingTickets = remainingTickets - userTickets
 	remainingTickets -= userTickets
-	bookings[0] = firstName + " " + lastName
+	// bookings[0] = firstName + " " + lastName
+	bookings = append(bookings, firstName + " " + lastName)
 	//* ------
-
-	fmt.Printf("Booking array: %v\n", bookings)
-	fmt.Printf("First element: %v, Array type: %T, Array length: %v \n", bookings[0], bookings, len(bookings))
 
 	fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
+
+	fmt.Printf("All bookings: %v", bookings)
 }
