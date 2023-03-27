@@ -8,7 +8,7 @@ func main() {
 	// var confName = "Go Conf"
 	confName := "Go Conf" // Syntatix suger with variable, not apply to constant
 	const confTickets int = 50
-	remainingTickets := 50
+	var remainingTickets uint = 50
 
 	// String Interpolation ---
 	// Solution 1.
@@ -23,11 +23,32 @@ func main() {
  	fmt.Println("Get your tickers here to attend")
 
 	// Data Type ---
-	var userName string
-	var userTickets int
+	var firstName string
+	var lastName string
+	var email string
+	var userTickets uint
 
-	userName = "Test"
-	userTickets = 100
+	var bookings [50]string // Array type
 
-	fmt.Printf("User %v have booked %v tickets", userName, userTickets)
+	// User Input & Pointer
+	fmt.Println("Enter your first name: ")
+	fmt.Scan(&firstName)
+	fmt.Println("Enter your last name: ")
+	fmt.Scan(&lastName)
+	fmt.Println("Enter your emai: ")
+	fmt.Scan(&email)
+	fmt.Println("Enter number of tickets: ")
+	fmt.Scan(&userTickets)
+
+	//* Booking logic in application ---
+	// remainingTickets = remainingTickets - userTickets
+	remainingTickets -= userTickets
+	bookings[0] = firstName + " " + lastName
+	//* ------
+
+	fmt.Printf("Booking array: %v\n", bookings)
+	fmt.Printf("First element: %v, Array type: %T, Array length: %v \n", bookings[0], bookings, len(bookings))
+
+	fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
 }
