@@ -10,7 +10,14 @@ func main() {
 	const confTickets int = 50
 	var remainingTickets uint = 50
 
+	// Arrays & Slices
+	// var bookings [50]string
+	// var bookings = []string{}
+	// var bookings []string
+	bookings := []string{}
+
 	// String Interpolation ---
+
 	// Solution 1.
 	// fmt.Println("Welcome to", confName, "booking application")
  	// fmt.Println("We have a total of", confTickets, "tickets and", remainingTickets, "are still available")
@@ -22,37 +29,34 @@ func main() {
  	fmt.Printf("We have a total of %v tickets and %v are still available \n", confTickets, remainingTickets)
  	fmt.Println("Get your tickers here to attend")
 
-	// Data Type ---
-	var firstName string
-	var lastName string
-	var email string
-	var userTickets uint
+	// Loop
+	for {
+		// Data Type ---
+		var firstName string
+		var lastName string
+		var email string
+		var userTickets uint
 
-	// Arrays & Slices
-	// var bookings [50]string
-	// var bookings = []string{}
-	// bookings := []string{}
-	var bookings []string
+		// User Input & Pointer
+		fmt.Println("Enter your first name: ")
+		fmt.Scan(&firstName)
+		fmt.Println("Enter your last name: ")
+		fmt.Scan(&lastName)
+		fmt.Println("Enter your emai: ")
+		fmt.Scan(&email)
+		fmt.Println("Enter number of tickets: ")
+		fmt.Scan(&userTickets)
 
-	// User Input & Pointer
-	fmt.Println("Enter your first name: ")
-	fmt.Scan(&firstName)
-	fmt.Println("Enter your last name: ")
-	fmt.Scan(&lastName)
-	fmt.Println("Enter your emai: ")
-	fmt.Scan(&email)
-	fmt.Println("Enter number of tickets: ")
-	fmt.Scan(&userTickets)
+		//* Booking logic in application ---
+		// remainingTickets = remainingTickets - userTickets
+		remainingTickets -= userTickets
+		// bookings[0] = firstName + " " + lastName
+		bookings = append(bookings, firstName + " " + lastName)
+		//* ------
 
-	//* Booking logic in application ---
-	// remainingTickets = remainingTickets - userTickets
-	remainingTickets -= userTickets
-	// bookings[0] = firstName + " " + lastName
-	bookings = append(bookings, firstName + " " + lastName)
-	//* ------
+		fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
 
-	fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
-	fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
-
-	fmt.Printf("All bookings: %v", bookings)
+		fmt.Printf("All bookings: %v\n", bookings)
+	}
 }
