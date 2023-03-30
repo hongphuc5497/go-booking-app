@@ -22,8 +22,8 @@ func main() {
 	//* String Interpolation ---
 	fmt.Printf("confName is %T, confTickets is %T, remainingTickets is %T\n", confName, confTickets, remainingTickets)
 	fmt.Printf("Welcome to %v booking application\n", confName)
- 	fmt.Printf("We have a total of %v tickets and %v are still available \n", confTickets, remainingTickets)
- 	fmt.Println("Get your tickers here to attend")
+	fmt.Printf("We have a total of %v tickets and %v are still available \n", confTickets, remainingTickets)
+	fmt.Println("Get your tickers here to attend")
 	//* -------
 
 	//* Loop ---
@@ -47,34 +47,34 @@ func main() {
 		//* ------
 
 		//* Booking logic in application ---
-		if userTickets > remainingTickets {
+		if userTickets <= remainingTickets {
+			remainingTickets -= userTickets
+			bookings = append(bookings, firstName+" "+lastName)
+			//* ------
+
+			fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
+
+			// * Iterate through slices/arrays ---
+			firstNames := []string{}
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+			// * ------
+
+			// * If statement ---
+			var isSoldOut bool = remainingTickets == 0
+			if isSoldOut {
+				fmt.Println("The conf is booked out.")
+				break
+			}
+			// * ------
+		} else {
 			fmt.Printf("We only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTickets)
-			continue
 		}
-
-		remainingTickets -= userTickets
-		bookings = append(bookings, firstName + " " + lastName)
 		//* ------
-
-		fmt.Printf("Thank you %v %v have booked %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, confName)
-
-		// * Iterate through slices/arrays ---
-		firstNames := []string{}
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
-		}
-		fmt.Printf("The first names of bookings are: %v\n", firstNames)
-		// * ------
-
-		// * If statement ---
-		var isSoldOut bool = remainingTickets == 0
-		if isSoldOut {
-			fmt.Println("The conf is booked out.")
-			break
-		}
-		// * ------
 	}
 	//* ------
 }
